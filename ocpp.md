@@ -202,12 +202,16 @@ For more info, refer to docs - page 32
 #### 4.4. Diagnostics Status Notification
 #### 4.5. Firmware Status Notification
 #### 4.6. Heartbeat
+![fig17](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/6043f278-19fc-4a08-ba24-dd8b09ad3e47)
+
 To let the Central System know that a Charge Point is still connected, a Charge Point sends a heartbeat after a configurable time interval.
 For more info, refer to docs - page 32  
 
 #### 4.7. Meter Values  
 
 #### 4.8. Start Transaction
+![fig19](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/f346f6e3-99b4-4d5b-87a0-9d25d38ef0f2)
+
 The Charge Point SHALL send a StartTransaction.req PDU to the Central System to inform about a transaction that has been started. If this transaction ends a reservation (see Reserve Now operation), then the StartTransaction.req MUST contain the reservationId.
 Upon receipt of a StartTransaction.req PDU, the Central System SHOULD respond with a StartTransaction.conf PDU. This response PDU MUST include a transaction id and an authorization status value.
 For more info, refer to docs - page 37  
@@ -215,6 +219,8 @@ For more info, refer to docs - page 37
 #### 4.9. Status Notification  
 
 #### 4.10. Stop Transaction
+![fig21](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/7286a02e-2066-4893-b1ef-104e04326374)
+
 When a transaction is stopped, the Charge Point SHALL send a StopTransaction.req PDU, notifying to the Central System that the transaction has stopped.
 For more info, refer to docs - page 43
 <br>
@@ -232,11 +238,15 @@ For more info, refer to docs - page 43
 #### 5.10. Get Local List Version  
 
 #### 5.11. Remote Start Transaction
+![fig32](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/e60b9181-631d-4de3-aba0-34dd7588e920)
+
 Central System can request a Charge Point to start a transaction by sending a RemoteStartTransaction.req. Upon receipt, the Charge Point SHALL reply with RemoteStartTransaction.conf and a status indicating whether it has accepted the request and will attempt to start a transaction.
 For more info, refer to docs - page 49
 <br>  
 
 #### 5.12. Remote Stop Transaction
+![fig33](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/3432ce0c-7c69-4744-957a-2ba43d44c285)
+
 Central System can request a Charge Point to stop a transaction by sending a RemoteStopTransaction.req to Charge Point with the identifier of the transaction. Charge Point SHALL reply with RemoteStopTransaction.conf and a status indicating whether it has accepted the request and a transaction with the given transactionId is ongoing and will be stopped.  
 
 This remote request to stop a transaction is equal to a local action to stop a transaction. Therefore, the transaction SHALL be stopped, The Charge Point SHALL send a StopTransaction.req and, if applicable, unlock the connector.
