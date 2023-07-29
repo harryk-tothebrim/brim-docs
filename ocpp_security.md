@@ -28,7 +28,7 @@ The table below shows which security measures are used by which profile.
 • The Unsecured Transport with Basic Authentication Profile does not include authentication for the Central System, or measures to set up a secure communication channel. Therefore, it should only be used in trusted networks, for instance in networks where there is a VPN between the Central System and the Charge Point. For field operation it is highly recommended to use a security profile with TLS.
 
 
-2.2. Generic Security Profile requirements
+#### 2.2. Generic Security Profile requirements
 Table 3. Generic Security Profile requirements
 |ID|PRECONDITION|REQUIREMENT DEFINITION|
 |--|--|--|
@@ -41,3 +41,84 @@ A00.FR.006|When a Central System communicates with Charge Points with different 
 
 > <b> NOTE </b> -
 Only securing the OCPP communication is not enough to build a secure Charge Point. All other interfaces to the Charge Point should be equally well secured.
+<br>
+
+#### 2.3. Unsecured Transport with Basic Authentication Profile - 1
+Security Profile 1 - Unsecured Transport with Basic Authentication  
+
+<b> Description </b> - The Unsecured Transport with Basic Authentication profile provides a low level of security. Charge Point authentication is done through a username and password. No measures are included to secure the communication channel.  
+Read docs for more info - page 7
+![fig1](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/963d8876-1ade-473a-b664-d772205b20f1)  
+<br>
+
+#### 2.4. TLS with Basic Authentication Profile - 2
+Security Profile 2 - TLS with Basic Authentication  
+
+<b> Description </b> - In the TLS with Basic Authentication profile, the communication channel is secured using Transport Layer Security (TLS). The Central System authenticates itself using a TLS server certificate. The Charge Points authenticate themselves using HTTP Basic Authentication.
+Read docs for more info - page 9  
+![fig2](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/cc564944-e61a-4d21-aca9-dbe0a2e7ed14)  
+<br>
+
+
+#### 2.5. TLS with Client Side Certificates Profile - 3
+Security Profile 3 - TLS with Client Side Certificates  
+
+<b> Description </b> - In the TLS with Client Side Certificates profile, the communication channel is secured using Transport Layer Security (TLS). Both the Charge Point and Central System authenticate themselves using certificates.
+Read docs for more info - page 9 
+![fig3](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/6415aaaf-b3ff-4215-b9a2-7b7f8f2d055d)  
+<br>
+
+#### 2.6. Keys used in OCPP
+OCPP uses a number of public private key pairs for its security, see below Table. To manage the keys on the Charge Point, messages have been added to OCPP. Updating keys on the Central System or at the manufacturer is out of scope for OCPP. If TLS with Client Side certificates is used, the Charge Point requires a "Charge Point certificate" for authentication against the Central System.  
+
+Table 10. Certificates used in the OCPP security specification  
+
+|CERTIFICATE|PRIVATE KEY STORED AT|DESCRIPTION|
+|--|--|--|
+Central System Certificate|Central System|Key used to authenticate the Central System.
+Central System Root Certificate|Central System|Certificate used to authenticate the Central System.
+Charge Point Certificate|Charge Point|Key used to authenticate the Charge Point.|
+Firmware Signing Certificate|Manufacturer|Key used to verify the firmware signature.
+Manufacturer Root Certificate|Manufacturer|Root certificate for verification of the Manufacturer certificate.
+<br>
+
+#### 2.6.2. Certificate Hierarchy
+This White Paper adds support for the use of two separate certificate hierarchies:
+1. The Charge Point Operator hierarchy which contains the Central System, and Charge Point certificates.
+2. The Manufacturer hierarchy which contains the Firmware Signing certificate.
+The Central System can update the CPO root certificates stored on the Charge Point using the InstallCertificate.req message.
+
+Table 12. Certificate Hierarchy requirements
+|ID|PRECONDITION REQUIREMENT|DEFINITION|
+|--|--|--|
+|A00.FR.601||The Charge Point Operator MAY act as a certificate authority for the Charge Point Operator hierarchy
+|A00.FR.602||The private keys belonging to the CPO root certificates MUST be well protected.
+|A00.FR.603||As the Manufacturer is usually a separate organization from the Charge Point Operator, a trusted third party SHOULD be used as a certificate authority. This is essential to have non-repudiation of firmware images.
+
+#### 2.6.3. Certificate Revocation
+In some cases a certificate may become invalid prior to the expiration of the validity period. Such cases include changes of the organization name, or the compromise or suspected compromise of the certificate’s private key. In such cases, the certificate needs to be revoked or indicate it is no longer valid. The revocation of the certificate does not mean that the connection needs to be closed as the the connection can stay open longer than 24 hours.  
+Different methods are recommended for certificate revocation, see below Table.  
+Table 13. Recommended revocation methods for the different certificates.  
+|CERTIFICATE|REVOCATION|
+|--|--|
+|Central System certificate|Fast expiration|
+Charge Point certificate|Online verification|
+Firmware Signing certificate|Online verification|
+<br>
+
+Table 14. Certificate Revocation requirements
+|ID|PRECONDITION REQUIREMENT|DEFINITION|
+|--|--|--|
+|A00.FR.701||Fast expiration SHOULD be used to revoke the Central System certificate. (See Note 1)
+|A00.FR.702||The Central System SHOULD use online certificate verification to verify the validity of the Charge Point certificates.
+|A00.FR.703||It is RECOMMENDED that a separate certificate authority server is used to manage the certificates.
+|A00.FR.704||The Central System SHALL verify the validity of the certificate with the certificate authority server. (See Note 2)
+|A00.FR.706||Prior to providing the certificate for firmware validation to the Charge Point, the Central System SHOULD validate both, the certificate and the signed firmware update.|  
+
+<b> Note 1 </b>: With fast expiration, the certificate is only valid for a short period, less than 24 hours. After that the server needs to request a new certificate from the Certificate Authority, which may be the CPO itself (see section Certificate Hierarchy). This prevents the Charge Points from needing to implement revocation lists or online certificate verification. This simplifies the implementation of certificate management at the Charge Point and reduces communication costs at the Charge Point side. By requiring fast expiration, if the certificate is compromised, the impact is reduced to only a short period.
+When the certificate chain should becomes compromised, attackers could used forged certificates to trick a Charge Point to connect to a "fake" Central System. By using fast expiration, the time a Charge Point is vulnerable is greatly reduced.
+The Charge Point always communicates with the Certificate Authority through the Central System, this way, if the Charge Points is compromised, the Charge Point cannot attack the CA directly.  
+
+<b> Note 2 </b>: This allows for immediate revocation of Charge Point certificates. Revocation of Charge Point certificates will happen for instance when a Charge Point is removed. This is more common than revoking the Central System certificate, which is normally only done when it is compromised.  
+
+<b> Note 3 </b>: It is best practice for any certificate authority server to keep track of revoked certificates.
