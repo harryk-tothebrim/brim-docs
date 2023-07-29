@@ -22,6 +22,17 @@ Depending on the required functionality, implementers can choose to implement on
 |  Smart Charging  |  Support for basic Smart Charging, for instance using control pilot.
 |  Remote Trigger  |  Support for remote triggering of Charge Point initiated messages
 
+* refer to page 9 of docs for further clarity on table above  
+
+
+#### General views of operation
+The following figures describe the general views of the operations between Charge Point and Central System for two cases:
+1. a Charge Point requesting authentication of a card and sending charge transaction status
+2. Central System requesting a Charge Point to update its firmware.
+The arrow labels in the following figures indicate the PDUs exchanged during the invocations of the operations. These PDUs are defined in detail in the Messages section.
+
+
+
 
 
 
