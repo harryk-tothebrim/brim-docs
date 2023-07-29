@@ -28,7 +28,7 @@ This section contains the terminology that is used throughout this document.
 | String | Case Sensitive String. Only printable ASCII allowed. All strings in messages and enumerations are case sensitive, unless explicitly stated otherwise.
 <br>  
 
-2.3. Abbreviations
+#### 2.3. Abbreviations
 | abv | meaning |
 | --- | --- |
 | CSL | Comma Separated List
@@ -85,7 +85,7 @@ Depending on the required functionality, implementers can choose to implement on
 <br> 
 
 
-#### General views of operation
+#### 3.4 General views of operation
 The following figures describe the general views of the operations between Charge Point and Central System for two cases:
 1. a Charge Point requesting authentication of a card and sending charge transaction status
 2. Central System requesting a Charge Point to update its firmware.
@@ -173,5 +173,82 @@ For more info, refer to docs - page 19
 For more info, refer to docs - page 20  
 <br>  
 
+####  3.13. Smart Charging
+With Smart Charging a Central System gains the ability to influence the charging power or current of a specific EV, or the total allowed energy consumption on an entire Charge Point / a group of Charge Points, for instance, based on a grid connection, energy availability on the gird or the wiring of a building. Influencing the charge power or current is based on energy transfer limits at specific points in time. Those limits are   
+
+####  3.13.1. Charging profile purposes
+A charging profile consists of a charging schedule, which is basically a list of time intervals with their maximum charge power or current, and some values to specify the time period and recurrence of the schedule.
+For more info, refer to docs - page 20  
+
+####  3.13.4. Smart Charging Use Cases
+There may be many different uses for smart charging. The following three typical kinds of smart charging will be used to illustrate the possible behavior of smart charging:
+• Load balancing
+• Central smart charging • Local smart charging
+There are more complex use cases possible in which two or more of the above use cases are combined into one more complex system.
+For more info, refer to docs - page 22  
+<br> 
 
 
+####  4. Operations Initiated by Charge Point
+#### 4.1. Authorize
+![fig12](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/2aac9a24-e526-455d-9c0d-d5d8fced0f47)
+
+Before the owner of an electric vehicle can start or stop charging, the Charge Point has to authorize the operation. The Charge Point SHALL only supply energy after authorization. When stopping a Transaction, the Charge Point SHALL only send an Authorize.req when the identifier used for stopping the transaction is different from the identifier that started the transaction.
+Authorize.req SHOULD only be used for the authorization of an identifier for charging.
+For more info, refer to docs - page 32   
+#### 4.2. Boot Notification
+#### 4.2.1. Transactions before being accepted by a Central System
+#### 4.3. Data Transfer
+#### 4.4. Diagnostics Status Notification
+#### 4.5. Firmware Status Notification
+#### 4.6. Heartbeat
+To let the Central System know that a Charge Point is still connected, a Charge Point sends a heartbeat after a configurable time interval.
+For more info, refer to docs - page 32  
+
+#### 4.7. Meter Values  
+
+#### 4.8. Start Transaction
+The Charge Point SHALL send a StartTransaction.req PDU to the Central System to inform about a transaction that has been started. If this transaction ends a reservation (see Reserve Now operation), then the StartTransaction.req MUST contain the reservationId.
+Upon receipt of a StartTransaction.req PDU, the Central System SHOULD respond with a StartTransaction.conf PDU. This response PDU MUST include a transaction id and an authorization status value.
+For more info, refer to docs - page 37  
+
+#### 4.9. Status Notification  
+
+#### 4.10. Stop Transaction
+When a transaction is stopped, the Charge Point SHALL send a StopTransaction.req PDU, notifying to the Central System that the transaction has stopped.
+For more info, refer to docs - page 43
+<br>
+
+#### 5. Operations Initiated by Central System
+#### 5.1. Cancel Reservation   
+#### 5.2. Change Availability
+#### 5.3. Change Configuration
+#### 5.4. Clear Cache
+#### 5.5. Clear Charging Profile
+#### 5.6. Data Transfer
+#### 5.7. Get Composite Schedule
+#### 5.8. Get Configuration
+#### 5.9. Get Diagnostics
+#### 5.10. Get Local List Version  
+
+#### 5.11. Remote Start Transaction
+Central System can request a Charge Point to start a transaction by sending a RemoteStartTransaction.req. Upon receipt, the Charge Point SHALL reply with RemoteStartTransaction.conf and a status indicating whether it has accepted the request and will attempt to start a transaction.
+For more info, refer to docs - page 49
+<br>  
+
+#### 5.12. Remote Stop Transaction
+Central System can request a Charge Point to stop a transaction by sending a RemoteStopTransaction.req to Charge Point with the identifier of the transaction. Charge Point SHALL reply with RemoteStopTransaction.conf and a status indicating whether it has accepted the request and a transaction with the given transactionId is ongoing and will be stopped.  
+
+This remote request to stop a transaction is equal to a local action to stop a transaction. Therefore, the transaction SHALL be stopped, The Charge Point SHALL send a StopTransaction.req and, if applicable, unlock the connector.
+For more info, refer to docs - page 50
+<br>  
+
+#### 5.13. Reserve Now
+#### 5.14. Reset
+#### 5.15. Send Local List
+#### 5.16. Set Charging Profile
+#### 5.17. Trigger Message
+#### 5.18. Unlock Connector
+#### 5.19. Update Firmware
+
+<end>
