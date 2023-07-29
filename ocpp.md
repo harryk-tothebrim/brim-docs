@@ -1,4 +1,4 @@
-### OCPP version 1.6
+### OCPP version 1.6 - Brief Overview
 This is the specification for OCPP version 1.6.
 
 OCPP is a standard open protocol for communication between Charge Points and a Central System and is designed to accommodate any type of charging technique.
