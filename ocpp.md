@@ -30,9 +30,8 @@ The following figures describe the general views of the operations between Charg
 1. a Charge Point requesting authentication of a card and sending charge transaction status
 2. Central System requesting a Charge Point to update its firmware.
 The arrow labels in the following figures indicate the PDUs exchanged during the invocations of the operations. These PDUs are defined in detail in the Messages section.
-https://github.com/harryk-tothebrim/brim-docs/blob/dev/img/ocpp_md_imgs/Screenshot%202023-07-29%20at%2010.19.28.png
 
-
+![fig1_seq_diagram](https://github.com/harryk-tothebrim/brim-docs/assets/139219682/cb33987f-767f-412d-8ef8-0bf4ed9cffbb)
 
 
 
