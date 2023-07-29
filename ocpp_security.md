@@ -26,3 +26,18 @@ The table below shows which security measures are used by which profile.
 |3. TLS with Client Side Certificates | TLS authentication using certificate | TLS authentication using certificate | Transport Layer Security (TLS) | 
 
 • The Unsecured Transport with Basic Authentication Profile does not include authentication for the Central System, or measures to set up a secure communication channel. Therefore, it should only be used in trusted networks, for instance in networks where there is a VPN between the Central System and the Charge Point. For field operation it is highly recommended to use a security profile with TLS.
+
+
+2.2. Generic Security Profile requirements
+Table 3. Generic Security Profile requirements
+|ID|PRECONDITION|REQUIREMENT DEFINITION|
+|--|--|--|
+A00.FR.001||The Charge Point and Central System SHALL only use one security profile at a time|
+A00.FR.002|If the Charge Point tries to connect with a different profile than the Central System is using|The Central System SHALL reject the connection.|
+A00.FR.003|If the Charge Point detects that the Central System has accepted a connection with a different profile than the Charge Point is using|The Charge Point SHALL terminate the connection.
+A00.FR.004||The security profile SHALL be configured before OCPP communication is enabled.|
+A00.FR.005||Lowering the security profile that is used to a less secure profile is, for security reasons, not part of the OCPP specification, and MUST be done through another method, not via OCPP. OCPP messages SHALL NOT be used for this (e.g. ChangeConfiguration.req or DataTransfer).
+A00.FR.006|When a Central System communicates with Charge Points with different security profiles or different versions of OCPP.|The Central System MAY operate the Charge Points via different addresses or ports of the Central System.  For instance, the Central System server may have one TCP port for TLS with Basic Authentication, and another port for TLS with Client Side Certificates.  In this case there is only one security profile in use per port of the Central System, which is allowed.|  
+
+> <b> NOTE </b> -
+Only securing the OCPP communication is not enough to build a secure Charge Point. All other interfaces to the Charge Point should be equally well secured.
