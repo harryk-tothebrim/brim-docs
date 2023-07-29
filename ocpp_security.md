@@ -122,3 +122,40 @@ The Charge Point always communicates with the Certificate Authority through the 
 <b> Note 2 </b>: This allows for immediate revocation of Charge Point certificates. Revocation of Charge Point certificates will happen for instance when a Charge Point is removed. This is more common than revoking the Central System certificate, which is normally only done when it is compromised.  
 
 <b> Note 3 </b>: It is best practice for any certificate authority server to keep track of revoked certificates.
+</br>
+
+#### 2.6.4. Installation during manufacturing or installation.
+Unique credentials should be used to authenticate each Charge Point to the Central System, whether they are the password used for HTTP Basic Authentication (see Charge Point Authentication) or the Charge Point certificate. These unique credentials have to be put on the Charge Point at some point during manufacturing or installation.  
+Read docs for more info - page 19 
+#### A01 - Update Charge Point Password for HTTP Basic Authentication  
+Read docs for more info - page 19 
+####  A02 - Update Charge Point Certificate by request of Central System  
+Read docs for more info - page 21
+A03 - Update Charge Point Certificate initiated by the Charge Point  
+Read docs for more info - page 25  
+A05 - Upgrade Charge Point Security Profile  
+Read docs for more info - page 27 
+M03 - Retrieve list of available certificates from a Charge Point
+Read docs for more info - page 30
+M04 - Delete a specific certificate from a Charge Point
+Read docs for more info - page 31
+M05 - Install CA certificate in a Charge Point
+Read docs for more info - page 33  
+3. Security events/logging  
+Read docs for more info - page 36  
+4. Secure firmware update
+Read docs for more info - page 41
+5. Messages
+Read docs for more info - page 48
+6. Datatypes
+Read docs for more info - page 54
+7. Configuration Keys
+Read docs for more info - page 62
+8. Security Events
+Read docs for more info - page 64
+9. Changelog Edition 2
+Read docs for more info - page 65
+10. Changelog Edition 3
+Read docs for more info - page 67
+
+
