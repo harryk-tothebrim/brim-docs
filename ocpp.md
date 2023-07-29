@@ -6,7 +6,8 @@ The specification does not define the communication technology. Any technology w
 
 #### 2.2. Definitions
 This section contains the terminology that is used throughout this document.
-| terminology | meaning |
+Refer to [terminologies.md](https://github.com/harryk-tothebrim/brim-docs/blob/dev/terminologies.md)
+<!-- | terminology | meaning |
 | --- | --- |
  |  Central System | Charge Point Management System: the central system that manages Charge Points and has the information for authorizing users for using its Charge Points.
 | CiString | Case Insensitive String. Only printable ASCII allowed.
@@ -54,7 +55,7 @@ This section contains the terminology that is used throughout this document.
 | TRS | 3 phase power connection, Standard 240 degree rotation
 | TSR | 3 phase power connection, Reversed 120 degree rotation
 | UTC | Coordinated Universal Time  
-<br>
+<br> -->
 
 
 #### 3. Introduction
