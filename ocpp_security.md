@@ -131,31 +131,31 @@ Read docs for more info - page 19
 Read docs for more info - page 19 
 ####  A02 - Update Charge Point Certificate by request of Central System  
 Read docs for more info - page 21
-A03 - Update Charge Point Certificate initiated by the Charge Point  
+#### A03 - Update Charge Point Certificate initiated by the Charge Point  
 Read docs for more info - page 25  
-A05 - Upgrade Charge Point Security Profile  
+#### A05 - Upgrade Charge Point Security Profile  
 Read docs for more info - page 27 
-M03 - Retrieve list of available certificates from a Charge Point
+#### M03 - Retrieve list of available certificates from a Charge Point
 Read docs for more info - page 30
-M04 - Delete a specific certificate from a Charge Point
+#### M04 - Delete a specific certificate from a Charge Point
 Read docs for more info - page 31
-M05 - Install CA certificate in a Charge Point
+#### M05 - Install CA certificate in a Charge Point
 Read docs for more info - page 33  
-3. Security events/logging  
+#### 3. Security events/logging  
 Read docs for more info - page 36  
-4. Secure firmware update
+#### 4. Secure firmware update
 Read docs for more info - page 41
-5. Messages
+#### 5. Messages
 Read docs for more info - page 48
-6. Datatypes
+#### 6. Datatypes
 Read docs for more info - page 54
-7. Configuration Keys
+#### 7. Configuration Keys
 Read docs for more info - page 62
-8. Security Events
+#### 8. Security Events
 Read docs for more info - page 64
-9. Changelog Edition 2
+#### 9. Changelog Edition 2
 Read docs for more info - page 65
-10. Changelog Edition 3
+#### 10. Changelog Edition 3
 Read docs for more info - page 67
 
 
