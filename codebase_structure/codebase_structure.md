@@ -2,9 +2,9 @@
 
 mybrim - directory
 
-mybrims/app
-mybrims/infrastructure
-mybrims/libs
-mybrims/scripts
-mybrims/seeds
-mybrims/tools
+mybrims/app  
+mybrims/infrastructure  
+mybrims/libs  
+mybrims/scripts  
+mybrims/seeds  
+mybrims/tools  
