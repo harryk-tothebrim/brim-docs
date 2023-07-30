@@ -13,8 +13,9 @@ and 20% into apps/.
 App is the start point of flutter application, it includes mobile application as well as web application. App is currently working on android as well as ios platforms. Web part of app is admin portal 
 
 To run the web try:  
-`flutter run -d chrome`
- <br>
+`flutter run -d chrome`  
+ <br>  
+
 
 #### graph
 Graph is the start point to graphql endpoint of backend service. It contains all code related to logic, calculations and mongodb. We are currently using typegoose for mongodb operations. 
@@ -24,9 +25,10 @@ To run the graph try:
 
 we are using typegoose to create models, and graphql. To generate types in graphQL you can run:  
 `nx run grapher:generate-graphql-types`  
-Although by doing graph:serve it will create types as well as start the server.
-<br>  
- 
+
+Although by doing graph:serve it will create types as well as start the server.  
+<br>   
+
 
 #### ocpp
 OCPP is the central system for chargers. It is also a typescript based app which contains connection with chargers. Charger events will be responded to by ocpp server.  
