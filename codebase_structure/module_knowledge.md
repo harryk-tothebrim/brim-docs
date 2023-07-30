@@ -17,7 +17,7 @@ To run the web try
  
 
 
-flutter run -d chrome
+`flutter run -d chrome`
  
 
 #### graph
@@ -26,12 +26,12 @@ Graph is the start point to graphql endpoint of backend service. It contains all
 To run the graph try:
 
 
-nx run graph:serve
+`nx run graph:serve`
 we are using typegoose to create models, and graphql. To generate types in graphQL you can run:
 
 
 
-nx run grapher:generate-graphql-types
+`nx run grapher:generate-graphql-types`
 Although by doing graph:serve it will create types as well as start the server.
 
  
@@ -43,7 +43,7 @@ OCPP is the central system for chargers. It is also a typescript based app which
 
  
 
-notifications
+#### notifications
  
 
 Notifications is express app which use REST protocol. It is being used to send notifications in telegram. The notifications are system alerts which gets pushed into pubsub and this pulls the pubsub message and acknowledge message. Notifications endpoint is configured in cloud scheduler.
@@ -69,14 +69,14 @@ Charger-01-z is app responsible for testing the behaviour of the charger in real
 To run charger-01-z try:
 
 
-nx run charger-01-z:serve
+`nx run charger-01-z:serve`
  
 
  
 
  
 
-Rest
+#### Rest
  
 
 Rest is a app in Nx workspace which is responsible for manually sending events to charger in case of unexpected behaviour. It is usually hit by a postman. We are continuously trying to implement features which would not require the Rest service in the long run.
